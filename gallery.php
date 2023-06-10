@@ -1,41 +1,53 @@
-<?php
-    require_once 'config.php';
-?>
+<?php require_once 'config.php'; ?>
 
 <div class="gallery">
-    <?php
-        $searchQuery = $_GET['search']; /* from navbar search */
-        $query = "SELECT game_name, image, stars, price FROM market";
-        $result = empty($searchQuery) ? mysqli($conn, $query) : mysqli($conn, $query . " WHERE game_name LIKE '%$searchQuery%'");
+    <?php include 'filters.php';?>
 
+     <?php
+        $searchQuery = isset($_GET['search']) ? trim($_GET['search']) : ''; /* from navbar search + sanitation */
+        $query = "SELECT * FROM market";
+        if (!empty($searchQuery)) {
+            $query .= " WHERE game_name LIKE '%$searchQuery%'";
+        }
+        $query .= " ORDER BY stars DESC"; // ordered by descending popularity
+        $result = mysqli_query($conn, $query);
+        
         while ($row = mysqli_fetch_assoc($result)) { // start of while loop, every row
+            $gameId = $row['game_id'];
             $gameName = $row['game_name'];
             $image = $row['image'];
-            $stars = $row['stars'];
+            $tags = $row['tags'];
+            $dev = $row['developer'];
             $price = $row['price'];
+            $storage = ['storage_required'];
+            $releaseDate = ['release_date'];
+            $description = ['description'];
+            $owned = ['owned'];
+            $stars = $row['stars'];$gameName = $row['game_name'];
+            $image = $row['image'];
+            $stars = $row['stars'];
+            $price = number_format($row['price'], 2);
     ?>
 
     <div class="gallery-item">
-        <img src="<?= $image; ?>" alt="image for <?=$gameName;?>" class="thumbnail">
+        <?php include 'popup.php'; ?>
+        <img src="<?= $image; ?>" alt="image for <?=$gameName;?>" class="thumbnail"
+         data-toggle="modal" data-target="#modal_<?=$gameId;?>">
         <div class="caption">
             <h5><?= $gameName; ?></h5>
         <div class="stars">
             <?php
-                $starCount = intval($stars); // Get the integer part of the star rating
-                $decimalPart = $stars - $starCount; // Get the decimal part
+                $starCount = intval($stars);
+                $decimalPart = $stars - $starCount; 
+                $width = intval($decimalPart * 100);
 
                 // Generate the shaded stars based on the integer part
-                for ($i = 1; $i <= 5; $i++) {
-                    if ($i <= $starCount) {
-                        echo '<span class="star-icon filled"></span>'; // Shaded star icon
-                    }
-                }
+                for ($i = 0; $i < $starCount; $i++)
+                    echo '<span class="star-icon filled"></span>';      // Shaded star icon
 
                 // Generate the partially shaded star based on the decimal part
-                if ($decimalPart > 0) {
-                    $width = intval($decimalPart * 100); // Convert the decimal to percentage width
-                    echo '<span class="star-icon partial" style="width: ' . $width . '%;"></span>'; // Partially shaded star
-                }
+                if ($decimalPart > 0) 
+                    echo '<span class="star-icon partial" style="width: ' . $width . '%;"></span>'; 
                 echo $stars;
             ?>
         </div>
@@ -46,7 +58,7 @@
         </div>
     </div>
     <?php
-        }
+        } // end of while loop
 
         mysqli_free_result($result);
     ?>

@@ -21,6 +21,8 @@ The codebase follows a modular and organized structure to enhance maintainabilit
 
 * `gallery.php`: Handles the game gallery. 
 
+* `filters.php`: Handles the filters, connected to `gallery.php`.
+
 * `popup.php`: Modals that expand to show detail of clicked games. Handles inserting, updating, and delete.
 
 * `assets/`: Directory for CSS, JS, and image files.

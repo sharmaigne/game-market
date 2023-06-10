@@ -1,4 +1,3 @@
-<!-- WIP, not moving for some reason -->
 <?php
     require_once 'config.php';
 ?>
