@@ -1,13 +1,13 @@
 <?php 
     require_once 'config.php'; 
     include_once 'index.php';
+    require_once 'functions.php';
 ?>
 
 <div class="gallery">
     <?php 
         // include 'filters.php';
-
-        $searchQuery = isset($_GET['search']) ? trim($_GET['search']) : '';
+        $searchQuery = isset($_GET['search']) ? trim($_GET['search']) : ''; /* from navbar search + sanitation */
         $query = "SELECT * FROM market";
         if (!empty($searchQuery)) {
             $query .= " WHERE game_name LIKE '%$searchQuery%'";
@@ -16,21 +16,17 @@
         $result = mysqli_query($conn, $query);
         
         while ($row = mysqli_fetch_assoc($result)) { // start of while loop, every row
-            $gameId = $row['game_id'];
-            $gameName = $row['game_name'];
-            $image = $row['image'];
-            $tags = $row['tags'];
-            $dev = $row['developer'];
-            $price = $row['price'];
-            $storage = $row['storage_required'];
-            $releaseDate = $row['release_date'];
-            $description = $row['description'];
-            $owned = $row['owned'];
-            $stars = $row['stars'];
-            $gameName = $row['game_name'];
-            $image = $row['image'];
-            $stars = $row['stars'];
-            $price = number_format($row['price'], 2);
+            $gameId         = $row['game_id'];
+            $gameName       = $row['game_name'];
+            $image          = $row['image'];
+            $tags           = $row['tags'];
+            $dev            = $row['developer'];
+            $price          = number_format($row['price'], 2);
+            $storage        = $row['storage_required'];
+            $releaseDate    = $row['release_date'];
+            $description    = $row['description'];
+            $owned          = $row['owned'];
+            $stars          = $row['stars'];
     ?>
 
     <div class="gallery-item">
