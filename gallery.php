@@ -1,10 +1,13 @@
-<?php require_once 'config.php'; ?>
+<?php 
+    require_once 'config.php'; 
+    include_once 'index.php';
+?>
 
 <div class="gallery">
-    <?php include 'filters.php';?>
+    <?php 
+        // include 'filters.php';
 
-     <?php
-        $searchQuery = isset($_GET['search']) ? trim($_GET['search']) : ''; /* from navbar search + sanitation */
+        $searchQuery = isset($_GET['search']) ? trim($_GET['search']) : '';
         $query = "SELECT * FROM market";
         if (!empty($searchQuery)) {
             $query .= " WHERE game_name LIKE '%$searchQuery%'";
@@ -19,11 +22,12 @@
             $tags = $row['tags'];
             $dev = $row['developer'];
             $price = $row['price'];
-            $storage = ['storage_required'];
-            $releaseDate = ['release_date'];
-            $description = ['description'];
-            $owned = ['owned'];
-            $stars = $row['stars'];$gameName = $row['game_name'];
+            $storage = $row['storage_required'];
+            $releaseDate = $row['release_date'];
+            $description = $row['description'];
+            $owned = $row['owned'];
+            $stars = $row['stars'];
+            $gameName = $row['game_name'];
             $image = $row['image'];
             $stars = $row['stars'];
             $price = number_format($row['price'], 2);

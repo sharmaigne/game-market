@@ -25,9 +25,12 @@
     <!-- Navigation Bar -->
     <?php include 'navbar.php'?>
     <!-- Hero Carousel -->
-    <?php include 'carousel.php'?>
+    <?php 
+        if(empty(isset($_GET['search']))) // don't show carousel when showing search
+            include 'carousel.php'
+    ?>
     <!-- Gallery -->
-    <?php include 'gallery.php' ?>
+    <?php include_once 'gallery.php' ?>
     <!-- JQUERY, POPPER, BOOTSTRAP SCRIPTS -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
