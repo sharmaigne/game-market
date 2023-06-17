@@ -13,9 +13,11 @@ The codebase follows a modular and organized structure to enhance maintainabilit
 
 * `config.php`: Configuration settings - database credentials and connection initialization.
 
-* `functions.php`: Defines reusable functions for database operations and form handling.
+* `functions.php`: Defines functions used in other pages such as insertGame() and buyGame().
 
 * `navbar.php`: Navigation bar and search functionality
+
+* `autocomplete.php`: inserted in search bars to add a datalist of game names with game IDs. used in `delete.php` and `update.php`.
 
 * `carousel.php`: Implements the banner hero carousel through JS and fetching the images of popular games from the database.
 
@@ -24,6 +26,12 @@ The codebase follows a modular and organized structure to enhance maintainabilit
 * `filters.php`: Handles the filters, connected to `gallery.php`.
 
 * `popup.php`: Modals that expand to show detail of clicked games. Handles inserting, updating, and delete.
+
+* `insert.php`
+
+* `update.php`
+
+* `delete.php`
 
 * `assets/`: Directory for CSS, JS, and image files.
 

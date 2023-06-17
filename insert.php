@@ -73,7 +73,7 @@
         </div>
         <div class="form-group mt-3">
             <label for="description">Description</label>
-            <textarea class="form-control" id="description" name="description" rows="3" placeholder="Enter description"></textarea>
+            <div class="form-control" id="description" name="description" contenteditable="true" placeholder="Enter description"></div>
         </div>
         <div class="form-group d-flex flex-row-reverse">
             <button type="submit" class="btn btn-primary mt-5 align-self-right">Submit</button>
