@@ -14,7 +14,6 @@
         }
         $query .= " ORDER BY stars DESC"; // ordered by descending popularity
         $result = mysqli_query($conn, $query);
-        
         while ($row = mysqli_fetch_assoc($result)) { // start of while loop, every row
             $gameId         = $row['game_id'];
             $gameName       = $row['game_name'];
@@ -34,7 +33,7 @@
         <img src="<?= $image; ?>" alt="image for <?=$gameName;?>" class="thumbnail"
          data-toggle="modal" data-target="#modal_<?=$gameId;?>">
         <div class="caption">
-            <h5><?= $gameName; ?></h5>
+            <h5><?= $gameName;?></h5>
         <div class="stars">
             <?php
                 $starCount = intval($stars);
@@ -53,7 +52,7 @@
         </div>
             <?php
                 if ($price == 0) echo '<p>Price: Free </p>';
-                else echo '<p>Price: ₱' . $price . '.00</p>';
+                else echo '<p>Price: ₱' . $price . '</p>';
             ?>
         </div>
     </div>

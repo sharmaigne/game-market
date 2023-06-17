@@ -58,7 +58,7 @@
         $result = mysqli_query($conn, $updateQuery);
 
         if (!$result)
-            die ('Could not update game of id ' . $gameId . ': ' . mysqli_error($conn))
+            die ('Could not update game of id ' . $gameId . ': ' . mysqli_error($conn));
 
         return mysqli_affected_rows($conn);
     }

@@ -30,7 +30,7 @@
                 </div>
                 <img src="<?= $image; ?>" alt="image for <?=$gameName;?>" class="thumbnail" style="object-fit:contain;">
                 <div class="p-2 d-flex flex-column">
-                    <form action="popup.php" method="POST">
+                    <form action="index.php" method="POST">
                         <button type="submit" name = "<?= $gameId;?>" class="btn btn-lg <?= ($owned) ? "btn-outline-success" : "btn-success";?>"
                         <?= ($owned) ? "disabled" : "" ;?>> <?= ($owned) ? "In Library" : "Purchase";?> </button>
                     </form>
