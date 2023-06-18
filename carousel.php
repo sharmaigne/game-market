@@ -1,58 +1,44 @@
 <?php
     require_once 'config.php';
+
+    $query = "SELECT `game_name`, `image` FROM `market` ORDER BY stars DESC LIMIT 5";
+    $result = mysqli_query($conn,$query);
+
 ?>
 
-<div id="carousel" class="carousel slide" data-bs-ride="carousel" >
+<div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-indicators">
-        <?php
-            $query = "SELECT game_id FROM market ORDER BY stars DESC LIMIT 5";
-            $result = mysqli_query($conn, $query);
-            $active = true;
-            $indicatorIndex = 0;
-
-            while ($row = mysqli_fetch_assoc($result)) {
-                $gameId = $row['game_id'];
-                $activeClass = $active ? 'active' : '';
-        ?>
-        <button type="button" data-bs-target="#carousel" data-bs-slide-to="<?= $indicatorIndex; ?>" class="<?= $activeClass; ?>"></li>
-        <?php
-                $active = false;
-                $indicatorIndex++;
-            }
-            mysqli_free_result($result);
-        ?>
+    <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="3" aria-label="Slide 4"></button>
+    <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="4" aria-label="Slide 5"></button>
     </div>
-
     <div class="carousel-inner">
-        <?php
-            $query = "SELECT `game_id`, `game_name`, `image` FROM market ORDER BY stars DESC LIMIT 5";
-            $result = mysqli_query($conn, $query);
-            $active = true;
+        <?php 
+            $row = mysqli_fetch_assoc($result);
+            echo "<div class='carousel-item active'>";
+            echo "<img src='$row[image]' class='thumbnail d-block w-100' style='object-fit:contain'>";
+            echo "<div class='carousel-caption'><h2 class='text-white' style='-webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-color: gray;'>$row[game_name]</h2></div></div>";
 
             while ($row = mysqli_fetch_assoc($result)) {
-                $gameId = $row['game_id'];
-                $gameName = $row['game_name'];
-                $image = $row['image'];
-                $activeClass = $active ? 'active' : '';
-        ?>
-        <div class="carousel-item <?= $activeClass; ?>" data-bs-interval="3000">
-            <img src="<?= $image; ?>" class="d-block w-100" alt="<?= $gameName; ?>">
-            <div class="carousel-caption">
-                <h5><?= $gameName; ?></h5>
-            </div>
-        </div>
-        <?php
-                $active = false;
-            }
-            mysqli_free_result($result);
-        ?>
-    </div>
+                $gameName   = $row['game_name'];
+                $image      = $row['image'];
 
-    <button class="carousel-control-prev" type="button" data-bs-target="#carousel" data-bs-slide="prev">
+                echo "<div class='carousel-item'>";
+                echo "<img src='$row[image]' class='d-block w-100'>";
+                echo "<div class='carousel-caption'><h2 class='text-white' style='-webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-color: gray;'>$row[game_name]</h2></div></div>";
+            }
+        ?>
+
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
         <span class="visually-hidden">Previous</span>
     </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carousel" data-bs-slide="next">
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
         <span class="visually-hidden">Next</span>
     </button>
