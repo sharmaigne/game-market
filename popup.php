@@ -6,14 +6,14 @@
     }
 ?>
 <!-- uses variables + function declared in gallery.php -->
-<div class="modal border" id="modal_<?=$gameId;?>" tabindex="-1" >
+<div class="modal" id="modal_<?=$gameId;?>" tabindex="-1" >
     <div class="modal-dialog modal-lg">
         <div class="modal-content text-white bg-dark border-secondary border-2">
             <div class="modal-header">
                 <h2 class="modal-title p-2">
                     <?=$gameName . " ";?>
                 </h2>
-                <button class="close" type="button" data-dismiss="modal" aria-label="Close">&times;</button>
+                <button class="btn-close bg-white me-1" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body d-flex flex-column">
                 <div class="p-2 d-flex flex-row justify-content-around">
