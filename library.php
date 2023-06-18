@@ -28,7 +28,7 @@
             <a class="navbar-brand" href="index.php?index=true">E&S</a>
 
             <div class="navbar-nav">
-                <a class="nav-link" aria-currrent="page" href="user.php?user=true">Home</a>
+                <a class="nav-link" aria-currrent="page" href="user.php?user=true">Store</a>
                 <a class="nav-link active" href="library.php?library=true">Library</a>
             </div>
 
@@ -44,6 +44,12 @@
             <a class="btn btn-light" href="index.php?index=true" role="button">View as Admin</a>
         </div>
     </nav>
+
+    <!-- heading -->
+    <div class="p-10 text-center mt-5 mb-5">
+        <h1 class="mb-3 text-white">Welcome to Library!</h1>
+        <h4 class="mb-3 text-white">Can't find what you're looking for? Head on to the <a href="user.php?user=true" style="color:green;">Store.<a></h4>
+    </div>
     <!-- Gallery handles owned -->
     <?php include_once 'gallery.php' ?>
     <!-- JQUERY, POPPER, BOOTSTRAP SCRIPTS -->
