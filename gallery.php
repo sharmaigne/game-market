@@ -30,8 +30,7 @@
 
     <div class="gallery-item">
         <?php include 'popup.php'; ?>
-        <img src="<?= $image; ?>" alt="image for <?=$gameName;?>" class="thumbnail"
-         data-toggle="modal" data-target="#modal_<?=$gameId;?>">
+            <img data-bs-toggle="modal" data-bs-target="#modal_<?=$gameId;?>" src="<?= $image; ?>" alt="image for <?=$gameName;?>" class="thumbnail">
         <div class="caption">
             <h5><?= $gameName;?></h5>
         <div class="stars">
