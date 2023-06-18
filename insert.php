@@ -36,45 +36,45 @@
     <div class="p-10 text-center mt-5">
         <h1 class="mb-3 text-white">Add info for game <span style="color: green;"><?='#' . $randomId;?></span></h1>
     </div>
-    <form action="insert.php" method="POST" class="container needs-validation" >
+    <form action="insert.php" method="POST" class="container needs-validation" novalidate>
         <input type="hidden" value="<?= $randomId;?>" name="game_id">
         <input type="hidden" value="0" name="owned">
         <div class="row">
             <div class="form-group col-sm-6">
                 <label for="game_name">Game Name</label>
-                <input type="text" class="form-control is-invalid" id="game_name" name="game_name" placeholder="" required>
+                <input type="text" class="form-control" id="game_name" name="game_name" pattern="[\s\S]+" placeholder="" required>
             </div>
             <div class="form-group col-sm-6">
                 <label for="developer">Developer</label>
-                <input type="text" class="form-control is-invalid" id="developer" name="developer" placeholder="Enter developer" required>
+                <input type="text" class="form-control " id="developer" name="developer" pattern="[\s\S]+" placeholder="Enter developer" required>
             </div>
         </div>
 
-      <div class="row mt-3">
+        <div class="row mt-3">
             <div class="form-group col-sm-3">
                 <label for="release_date">Release Date</label>
-                <input type="text" class="form-control is-invalid" id="release_date" name="release_date" placeholder="Enter release date (yyyy-mm-dd)" required>
+                <input type="date" class="form-control " id="release_date" name="release_date" placeholder="Enter release date (yyyy-mm-dd)" required>
                 <div class="invalid-feedback">
                     Enter a valid date.
                 </div>
             </div>
             <div class="form-group col-sm-3">
             <label for="price">Price</label>
-                <input type="text" class="form-control is-invalid" id="price" name="price" placeholder="Enter price" required>
+                <input type="text" class="form-control" pattern="^\d+(\.[\d]{1,2})?$" id="price" name="price" placeholder="Enter price" required>
                 <div class="invalid-feedback">
                     Enter a valid price.
                 </div>
             </div>
             <div class="form-group col-sm-3">
                 <label for="storage">Storage</label>
-                <input type="text" class="form-control is-invalid" id="storage_required" name="storage_required" placeholder="Enter storage" required>
+                <input type="text" class="form-control " id="storage_required" pattern="^[0-9]+(\.[0-9]+)?\s[G,M,K]B$" name="storage_required" placeholder="Enter storage" required>
                 <div class="invalid-feedback">
                     Enter a valid storage requirement.
                 </div>
             </div>
             <div class="form-group col-sm-3">
                 <label for="stars">Stars</label>
-                <input type="text" class="form-control is-invalid" id="stars" name="stars" min="0" max="5" step="0.1" placeholder="Enter stars" required>
+                <input type="text" class="form-control " id="stars" name="stars" pattern="^(5(\.0)?)|([0-4](\.[0-9]{0,2})?)$" min="0" max="5" step="0.1" placeholder="Enter stars" required>
                 <div class="invalid-feedback">
                     Enter a valid star rating out of 5.
                 </div>
@@ -83,25 +83,25 @@
 
         <div class="form-group mt-3">
             <label for="image">Image Link</label>
-            <input type="text" class="form-control is-invalid" id="image" name="image" placeholder="Enter image link" required>
+            <input type="url" class="form-control " id="image" name="image" placeholder="Enter image link" required>
             <div class="invalid-feedback">
                 Enter a valid image link.
             </div>
         </div>
         <div class="form-group mt-3">
             <label for="tags">Tags</label>
-            <input type="text" class="form-control is-invalid" id="tags" name="tags" placeholder="Enter comma separated tags" required>
+            <input type="text" class="form-control " id="tags" name="tags" pattern="[\s\S]+" placeholder="Enter comma separated tags" required>
         </div>
         <div class="form-group mt-3">
             <label for="description">Description</label>
-            <input class="form-control" id="description is-invalid" name="description" contenteditable="true" placeholder="Enter description" required>
+            <input class="form-control " id="description " name="description" pattern="[\s\S]+" placeholder="Enter description" required>
         </div>
         <div class="form-group d-flex flex-row-reverse">
             <button type="submit" class="btn btn-primary mt-5 align-self-right" name="submit">Submit</button>
         </div>
     </form>
 
-    <script src="assets/validation.js"></script>
+    <script src="./assets/validation.js"></script>
 
     <!-- JQUERY, POPPER, BOOTSTRAP SCRIPTS -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
