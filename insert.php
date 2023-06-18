@@ -1,7 +1,14 @@
-<!-- INSERT PHP HERE: require config, functions -->
 <?php 
     require_once 'functions.php';
     require_once 'config.php';
+?>
+
+<?php
+    if (isset($_POST["submit"])) {
+        insertGame($conn, $_POST);
+        echo '<div id="success-message" class="alert alert-success" role="alert" style="position:fixed; bottom:0; left:0; right:0; z-index:9999; opacity:1; transition: opacity 0.5s ease;">'. $_POST['game_name']. ' (#' . $_POST['game_id'] . ') successfully added to the market.</div>';
+        echo '<script>setTimeout(function(){ document.getElementById("success-message").style.opacity = "0"; }, 3500);</script>';
+    }
 ?>
 
 <!DOCTYPE html>
@@ -38,7 +45,6 @@
     </div>
     <form action="insert.php" method="POST" class="container needs-validation" novalidate>
         <input type="hidden" value="<?= $randomId;?>" name="game_id">
-        <input type="hidden" value="0" name="owned">
         <div class="row">
             <div class="form-group col-sm-6">
                 <label for="game_name">Game Name</label>
@@ -110,12 +116,3 @@
 
 </body>
 </html>
-
-<?php
-
-    if (isset($_POST["submit"])) {
-        insertGame($conn, $_POST);
-        echo "<script>alert('Game inserted into the market.');</script>";
-    }
-
-?>

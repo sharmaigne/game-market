@@ -1,5 +1,7 @@
-<!-- INSERT PHP HERE: require config, functions -->
-<?php require_once 'config.php'?>
+<?php 
+    require_once 'config.php';
+    require_once 'functions.php';
+?>
 <?php 
     if(isset($_GET['searchForUpdate'])) {
         $search = $_GET['searchForUpdate'];
@@ -16,7 +18,11 @@
             echo '<div class="alert alert-danger" role="alert">Game not found.</div>';
     } 
 
-    
+    if(isset($_POST['submit'])) {
+        updateGame($conn, $_POST['game_id'], $_POST);
+        echo '<div id="success-message" class="alert alert-success" role="alert" style="position:fixed; bottom:0; left:0; right:0; z-index:9999; opacity:1; transition: opacity 0.5s ease;">Details of '. $_POST['game_name']. ' (#' . $_POST['game_id'] . ') successfully updated.</div>';
+        echo '<script>setTimeout(function(){ document.getElementById("success-message").style.opacity = "0"; }, 3500);</script>';
+    }
 ?>
 
 <!DOCTYPE html>
@@ -65,50 +71,66 @@
     </form>
 
     <form action="update.php" method="POST" class="container">
+        <input type="hidden" value="<?=$gameId;?>" name="game_id">
         <div class="row">
             <div class="form-group col-sm-6">
                 <label for="game_name">Game Name</label>
-                <input type="text" class="form-control" id="game_name" name="game_name" placeholder="" value="<?= (isset($game) ? $game['game_name'] : '')?>">
+                <input type="text" class="form-control" id="game_name" name="game_name" pattern="[\s\S]+" placeholder="" value="<?= (isset($game) ? $game['game_name'] : '')?>" required>
             </div>
             <div class="form-group col-sm-6">
                 <label for="developer">Developer</label>
-                <input type="text" class="form-control" id="developer" name="developer" placeholder="Enter developer" value="<?= (isset($game) ? $game['developer'] : '')?>">
+                <input type="text" class="form-control" id="developer" name="developer" pattern="[\s\S]+" placeholder="Enter developer" value="<?= (isset($game) ? $game['developer'] : '')?>" required>
             </div>
         </div>
 
-      <div class="row mt-3">
+        <div class="row mt-3">
             <div class="form-group col-sm-3">
                 <label for="release_date">Release Date</label>
-                <input type="text" class="form-control" id="release_date" name="release_date" placeholder="Enter release date (yyyy-mm-dd)" value="<?= (isset($game) ? $game['release_date'] : '')?>">
+                <input type="text" class="form-control" id="release_date" name="release_date" placeholder="Enter release date (yyyy-mm-dd)" value="<?= (isset($game) ? $game['release_date'] : '')?>" required>
+                <div class="invalid-feedback">
+                    Enter a valid date.
+                </div>
             </div>
             <div class="form-group col-sm-3">
             <label for="price">Price</label>
-                <input type="text" class="form-control" id="price" name="price" placeholder="Enter price" value="<?= (isset($game) ? $game['price'] : '')?>">
+                <input type="text" class="form-control" id="price" name="price" pattern="^\d+(\.[\d]{1,2})?$" placeholder="Enter price" value="<?= (isset($game) ? $game['price'] : '')?>" required>
+                <div class="invalid-feedback">
+                    Enter a valid price.
+                </div>
             </div>
             <div class="form-group col-sm-3">
                 <label for="storage">Storage</label>
-                <input type="text" class="form-control" id="storage_required" name="storage_required" placeholder="Enter storage" value="<?= (isset($game) ? $game['storage_required'] : '')?>">
+                <input type="text" class="form-control" id="storage_required" name="storage_required" pattern="^[0-9]+(\.[0-9]+)?\s[G,M,K]B$" placeholder="Enter storage" value="<?= (isset($game) ? $game['storage_required'] : '')?>" required>
+                <div class="invalid-feedback">
+                    Enter a valid storage requirement.
+                </div>
             </div>
             <div class="form-group col-sm-3">
                 <label for="stars">Stars</label>
-                <input type="number" class="form-control" id="stars" name="stars" min="0" max="5" placeholder="Enter stars" value="<?= (isset($game) ? $game['stars'] : '')?>">
+                <input type="text" class="form-control " id="stars" name="stars" pattern="^(5(\.0)?)|([0-4](\.[0-9]{0,2})?)$" min="0" max="5" step="0.1" placeholder="Enter stars" value="<?= (isset($game) ? $game['stars'] : '')?>" required>
+                <div class="invalid-feedback">
+                    Enter a valid star rating out of 5.
+                </div>
             </div>
         </div>
 
         <div class="form-group mt-3">
             <label for="image">Image Link</label>
-            <input type="text" class="form-control" id="image" name="image" placeholder="Enter image link" value="<?= (isset($game) ? $game['image'] : '')?>">
+            <input type="url" class="form-control" id="image" name="image" placeholder="Enter image link" value="<?= (isset($game) ? $game['image'] : '')?>" required>
+            <div class="invalid-feedback">
+                Enter a valid image link.
+            </div>
         </div>
         <div class="form-group mt-3">
             <label for="tags">Tags</label>
-            <input type="text" class="form-control" id="tags" name="tags" placeholder="Enter comma separated tags" value="<?= (isset($game) ? $game['tags'] : '')?>">
+            <input type="text" class="form-control" id="tags" name="tags" pattern="[\s\S]+" placeholder="Enter comma separated tags" value="<?= (isset($game) ? $game['tags'] : '')?>" required>
         </div>
         <div class="form-group mt-3">
             <label for="description">Description</label>
-            <div class="form-control" id="description" name="description" contenteditable="true" placeholder="Enter description"><?= (isset($game) ? $game['description'] : '')?></div>
+            <input type="text" class="form-control" id="description" name="description" placeholder="Enter description" value="<?= (isset($game) ? $game['description'] : '')?>">
         </div>
         <div class="form-group d-flex flex-row-reverse">
-            <button type="submit" class="btn btn-primary mt-5 align-self-right">Update</button>
+            <button type="submit" class="btn btn-primary mt-5 align-self-right" name="submit">Update</button>
         </div>
     </form>
     </div>

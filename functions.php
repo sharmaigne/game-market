@@ -15,15 +15,14 @@
         $storage      = sanitize($conn, $gameData['storage_required']);
         $releaseDate  = sanitize($conn, $gameData['release_date']);
         $description  = sanitize($conn, $gameData['description']);
-        $owned        = sanitize($conn, $gameData['owned']);
         $stars        = sanitize($conn, $gameData['stars']);
 
         $insertQuery = "INSERT INTO `market` (
             `game_id`, `game_name`, `image`, `tags`, `developer`, `price`,
-            `storage_required`, `release_date`, `description`, `owned`, `stars`) 
+            `storage_required`, `release_date`, `description`, `stars`) 
             VALUES (
                 '$gameId', '$gameName', '$image', '$tags', '$dev', '$price',
-                '$storage', '$releaseDate', '$description', '$owned', '$stars')";
+                '$storage', '$releaseDate', '$description' , '$stars')";
         
         $result = mysqli_query($conn, $insertQuery);
 
@@ -43,7 +42,6 @@
         $storage      = sanitize($conn, $gameData['storage_required']);
         $releaseDate  = sanitize($conn, $gameData['release_date']);
         $description  = sanitize($conn, $gameData['description']);
-        $owned        = sanitize($conn, $gameData['owned']);
         $stars        = sanitize($conn, $gameData['stars']);
 
         // UPDATE query
@@ -51,7 +49,7 @@
             "UPDATE `market` SET 
                     `game_name` = '$gameName', `image` = '$image', `tags` = '$tags', 
                     `developer` = '$dev', `price` = '$price', `storage_required` = '$storage',
-                    `release_date` = '$releaseDate', `description` = '$description', `owned` = '$owned',
+                    `release_date` = '$releaseDate', `description` = '$description',
                     `stars` = '$stars'
                 WHERE game_id = '$gameId'";
             

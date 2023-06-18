@@ -5,7 +5,6 @@
     // connection errors
     if (mysqli_connect_errno()) {
         die('Database connnection failed: ' . mysqli_connect_error());
-        echo '<h1>HIII</h1>';
     }
 
     // encoding
