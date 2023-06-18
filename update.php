@@ -56,14 +56,14 @@
         <h1 class="mb-3 text-white">Update an existing game</h1>
     </div>
 
-    <form action="update.php" method="GET" class="row mb-5">
-        <div class="col">
+    <form action="update.php" method="GET" class="container row mb-5">
+        <div class="col-11">
             <input list="gameSuggestions" class="form-control" placeholder="Choose a game to edit..." aria-label="Search" id="searchForUpdate" name="searchForUpdate" type="text">
             <datalist id="gameSuggestions" class="search-datalist">
                 <?php include_once 'autocomplete.php';?>
             </datalist>
         </div>
-        <div class="col-auto">
+        <div class="col d-flex justify-content-center">
             <button class="btn btn-outline-light" type="submit">
                 <i class="bi bi-search"></i>
             </button>
