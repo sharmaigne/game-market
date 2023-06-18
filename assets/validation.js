@@ -1,4 +1,3 @@
-'use strict'
 
 /* use a validity hack for url */
 function invalid_image(inp, image) {
@@ -30,13 +29,13 @@ function invalid_storage(inp, storage) {
 }
 
 function invalid_date(inp, release_date){
-    const pattern   = /[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])/;
+    const pattern   = /^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/;
 
     /* month and day with integer hack */
-    const month     = + (/(?<=[0-9-]{5})\d{2}(?=[-0-9])/)
-                        .exec(release_date);
+    const month     = + (/(?<=[0-9]{4}-)\d{2}(?=-[0-9])/)
+                        .exec(release_date)[0];
     const day       = + (/(?<=[0-9]{4}-[0-9]{2}-)\d{2}/)
-                        .exec(release_date);
+                        .exec(release_date)[0];
 
     const valid_day = day >= 0 && ( 0                        /* hack for haskell syntax */ 
         || (month == 2 && day <= 29) 
@@ -54,29 +53,37 @@ function isempty(inp) {
     return res;
 }
 
+function invalid_price(inp) {
+    const res = isNaN(inp);
+    inp.className = "form-control " + (res ? "is-invalid" : "is-valid");
+    return res;
+}
+
 const forms = document.querySelectorAll('.needs-validation')
 
 /* validation */
 Array.from(forms).forEach(form => {
     form.addEventListener('submit', event => {
-        const game_name     = form.querySelector("#game_name");
-        const developer     = form.querySelector("#developer");
-        const release_date  = form.querySelector("#release_date");
-        const price         = form.querySelector("#price");
-        const storage       = form.querySelector("#storage_required");
-        const stars         = form.querySelector("#stars");
-        const image         = form.querySelector("#image");
-        const tags          = form.querySelector("#tags");
-        const description   = form.querySelector("#description");
+        let game_name     = form.querySelector("#game_name");
+        let developer     = form.querySelector("#developer");
+        let release_date  = form.querySelector("#release_date");
+        let price         = form.querySelector("#price");
+        let storage       = form.querySelector("#storage_required");
+        let stars         = form.querySelector("#stars");
+        let image         = form.querySelector("#image");
+        let tags          = form.querySelector("#tags");
+        let description   = form.querySelector("#description");
 
         if (
-            isempty(game_name) || isempty(developer) || isempty(tags) || isempty(description) ||    /* HACK : check for empty */
-            isNaN(price.value) || invalid_stars(stars, stars.value) ||                              /* check for invalid numbers */
-            invalid_image(image, image.value) || invalid_storage(storage, storage.value) ||
-            invalid_date(release_date, release_date.value)                 
+            isempty(game_name) || isempty(developer) || 
+            invalid_date(release_date, release_date.value) ||
+            invalid_price(price) || invalid_stars(stars, stars.value) ||             
+            isempty(tags) || isempty(description) ||
+            invalid_image(image, image.value) || invalid_storage(storage, storage.value)
         ){
             event.preventDefault();
             event.stopPropagation();
+            return;
         }
 
         form.classList.add('was-validated')
