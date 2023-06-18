@@ -27,11 +27,16 @@ The codebase follows a modular and organized structure to enhance maintainabilit
 
 * `popup.php`: Modals that expand to show detail of clicked games. Handles inserting, updating, and delete.
 
+* `assets/`: Directory for CSS, JS, and image files.
+
+##### Admin Side
 * `insert.php`
 
 * `update.php`
 
 * `delete.php`
 
-* `assets/`: Directory for CSS, JS, and image files.
+##### User Side
+* `user.php`: version of `index.php` for users. Does not have access to admin side files.
+* `library.php`: only showcases owned games
 
