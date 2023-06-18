@@ -127,7 +127,8 @@
         </div>
         <div class="form-group mt-3">
             <label for="description">Description</label>
-            <input type="text" class="form-control" id="description" name="description" placeholder="Enter description" value="<?= (isset($game) ? $game['description'] : '')?>">
+            <!-- <input type="text" class="form-control" id="description1" name="description1" placeholder="Enter description" value="<?= (isset($game) ? $game['description'] : '')?>"> -->
+            <textarea name="description" id="description" class="form-control" placeholder="Enter description" row=10><?= (isset($game) ? $game['description'] : '')?></textarea>
         </div>
         <div class="form-group d-flex flex-row-reverse">
             <button type="submit" class="btn btn-primary mt-5 align-self-right" name="submit">Update</button>
