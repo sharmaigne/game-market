@@ -1,18 +1,40 @@
 <?php 
     require_once 'config.php'; 
-    include_once 'index.php';
     require_once 'functions.php';
+
+    if (isset($_GET['user']) || isset($_GET['user-search'])){
+        include_once 'user.php';
+    } else if (isset($_GET['library']) || isset($_GET['library-search'])){
+        include_once 'library.php';
+    } else {
+        include_once 'index.php';
+    }
 ?>
 
 <div class="gallery">
     <?php 
         // include 'filters.php';
-        $searchQuery = isset($_GET['search']) ? trim($_GET['search']) : ''; /* from navbar search + sanitation */
         $query = "SELECT * FROM market";
-        if (!empty($searchQuery)) {
+        if (isset($_GET['library']))
+            $query .= " WHERE owned = 1";
+
+        // initialize searchQuery from index.php or user.php
+        if (isset($_GET['search']))
+            $searchQuery = trim($_GET['search']);
+        else if (isset($_GET['user-search']))
+            $searchQuery = trim($_GET['user-search']);
+        else if (isset($_GET['library-search']))
+            $searchQuery = trim($_GET['library-search']);
+        else
+            $searchQuery = "";
+
+        if (!empty($searchQuery))
             $query .= " WHERE game_name LIKE '%$searchQuery%'";
-        }
+        if (isset($_GET['library-search']))
+            $query .= " AND owned = 1";
+
         $query .= " ORDER BY stars DESC"; // ordered by descending popularity
+
         $result = mysqli_query($conn, $query);
         while ($row = mysqli_fetch_assoc($result)) { // start of while loop, every row
             $gameId         = $row['game_id'];
@@ -61,4 +83,3 @@
         mysqli_free_result($result);
     ?>
 </div>
-
