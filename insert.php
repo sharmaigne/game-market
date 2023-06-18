@@ -94,7 +94,11 @@
         </div>
         <div class="form-group mt-3">
             <label for="description">Description</label>
+<<<<<<< HEAD
+            <input class="form-control is-invalid" id="description" name="description" contenteditable="true" placeholder="Enter description" required>
+=======
             <input class="form-control " id="description " name="description" pattern="[\s\S]+" placeholder="Enter description" required>
+>>>>>>> bb198fa02a552916c92e197479d6552afe072f65
         </div>
         <div class="form-group d-flex flex-row-reverse">
             <button type="submit" class="btn btn-primary mt-5 align-self-right" name="submit">Submit</button>
