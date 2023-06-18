@@ -28,7 +28,7 @@
             <a class="navbar-brand" href="index.php?index=true">E&S</a>
 
             <div class="navbar-nav">
-                <a class="nav-link active" aria-currrent="page" href="user.php?user=true">Home</a>
+                <a class="nav-link active" aria-currrent="page" href="user.php?user=true">Store</a>
                 <a class="nav-link" href="library.php?library=true">Library</a>
             </div>
 
