@@ -3,7 +3,7 @@
         <a class="navbar-brand" href="index.php">E&S</a>
         <ul class="navbar-nav mr-auto">
             <li class="nav-item dropdown">
-                <a href="#" class="nav-link dropdown-toggle" id="updateDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Admin Options</a>
+                <a href="#" role="button" class="nav-link dropdown-toggle" id="updateDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Admin Options</a>
                 <div class="dropdown-menu" aria-labelledby="updateDropdown">
                     <a href="insert.php" class="dropdown-item">Add a new game</a>
                     <a href="update.php" class="dropdown-item">Update a game</a>
