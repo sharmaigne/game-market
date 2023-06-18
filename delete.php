@@ -3,8 +3,8 @@
     require_once 'functions.php';
 ?>
 <?php 
-    if(isset($_GET['searchForUpdate'])) {
-        $search = $_GET['searchForUpdate'];
+    if(isset($_GET['searchForDelete'])) {
+        $search = $_GET['searchForDelete'];
         // from last '#' to end to get game id
         $gameId = substr($search, strpos($search, '#') +1);
         
@@ -54,7 +54,7 @@
 
     <form action="delete.php" method="GET" class="row mb-5">
         <div class="col">
-            <input list="gameSuggestions" class="form-control" placeholder="Choose a game to edit..." aria-label="Search" id="searchForUpdate" name="searchForUpdate" type="text">
+            <input list="gameSuggestions" class="form-control" placeholder="Choose a game to delete..." aria-label="Search" id="searchForDelete" name="searchForDelete" type="text">
             <datalist id="gameSuggestions" class="search-datalist">
                 <?php include_once 'autocomplete.php';?>
             </datalist>
@@ -69,7 +69,7 @@
     <!-- JQUERY, POPPER, BOOTSTRAP SCRIPTS -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script> 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
 
     <!-- AUTOCOMPLETE JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/typeahead.js/0.11.1/typeahead.bundle.min.js"></script>
