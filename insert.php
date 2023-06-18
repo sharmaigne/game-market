@@ -48,7 +48,7 @@
         <div class="row">
             <div class="form-group col-sm-6">
                 <label for="game_name">Game Name</label>
-                <input type="text" class="form-control" id="game_name" name="game_name" pattern="[\s\S]+" placeholder="" required>
+                <input type="text" class="form-control" id="game_name" name="game_name" pattern="[\s\S]+" placeholder="Enter game name" required>
             </div>
             <div class="form-group col-sm-6">
                 <label for="developer">Developer</label>
@@ -66,21 +66,21 @@
             </div>
             <div class="form-group col-sm-3">
             <label for="price">Price</label>
-                <input type="text" class="form-control" pattern="^\d+(\.[\d]{1,2})?$" id="price" name="price" placeholder="Enter price" required>
+                <input type="text" class="form-control" pattern="^\d+(\.[\d]{1,2})?$" id="price" name="price" placeholder="Enter price (in Php)" required>
                 <div class="invalid-feedback">
                     Enter a valid price.
                 </div>
             </div>
             <div class="form-group col-sm-3">
                 <label for="storage">Storage</label>
-                <input type="text" class="form-control " id="storage_required" pattern="^[0-9]+(\.[0-9]+)?\s[G,M,K]B$" name="storage_required" placeholder="Enter storage" required>
+                <input type="text" class="form-control " id="storage_required" pattern="^[0-9]+(\.[0-9]+)?\s[G,M,K]B$" name="storage_required" placeholder="Enter storage (eg. 20 MB, 3.4 GB)" required>
                 <div class="invalid-feedback">
                     Enter a valid storage requirement.
                 </div>
             </div>
             <div class="form-group col-sm-3">
                 <label for="stars">Stars</label>
-                <input type="text" class="form-control " id="stars" name="stars" pattern="^(5(\.0)?)|([0-4](\.[0-9]{0,2})?)$" min="0" max="5" step="0.1" placeholder="Enter stars" required>
+                <input type="text" class="form-control " id="stars" name="stars" pattern="^(5(\.0)?)|([0-4](\.[0-9]{0,2})?)$" min="0" max="5" step="0.1" placeholder="Enter stars (0.0 - 5.0)" required>
                 <div class="invalid-feedback">
                     Enter a valid star rating out of 5.
                 </div>
