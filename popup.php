@@ -6,7 +6,7 @@
     }
 ?>
 <!-- uses variables + function declared in gallery.php -->
-<div class="modal border" id="modal_<?=$gameId;?>" >
+<div class="modal border" id="modal_<?=$gameId;?>" tabindex="-1" >
     <div class="modal-dialog modal-lg">
         <div class="modal-content text-white bg-dark border-secondary border-2">
             <div class="modal-header">
